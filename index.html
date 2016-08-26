@@ -58,7 +58,15 @@
 			<button id="stop">STOP GAME</button>
 
 
-			<br/><br/><br/><br/><br/><br/>
+			<br/><br/>
+
+			For Testing:
+			<ol>
+				<li>Click START GAME</li>
+				<li>Click one of the 4 score buttons</li>
+				<li>Click STOP GAME</li>
+			</ol>
+			<br/><br/><br/><br/>
 
 			<div class="game-story-container"></div>
 
@@ -70,15 +78,15 @@
 
 					var $gs = $('.game-story-container');
 
-					$gs.gameStory(); // uses default settings (5 minute default game, ...)
+					//$gs.gameStory(); // uses default settings (5 minute default game, ...)
 					
 					// override defaults (great for testing)
-					//$gs.gameStory({
-					//	gameTimeSeconds: (1 * 60) /// just the "default" game time, it will be smart
+					$gs.gameStory({
+						gameTimeSeconds: (1 * 60) /// just the "default" game time, it will be smart
 					//	,startingTime: 44 /// testing
 					//	,autoExtendTimerBy: .50
 					//	,debug: true
-					//}); // calls the init method
+					}); // calls the init method
 
 					$('#start').on('click', function() { 
 						$gs.gameStory('start');
@@ -86,16 +94,16 @@
 					
 
 					$('#scoreYellowD').on('click', function() { 
-						$gs.gameStory('score', 'yellow defense', 'MS'); // label could be 'D'
+						$gs.gameStory('score', 'yellow defense', 'D'); // label could initials
 					});
 					$('#scoreYellowO').on('click', function() { 
-						$gs.gameStory('score', 'yellow offense', 'CH'); // could be 'O'
+						$gs.gameStory('score', 'yellow offense', 'O'); // label could initials
 					});
 					$('#scoreBlackD').on('click', function() { 
-						$gs.gameStory('score', 'black defense', 'IT'); // could be 'D'
+						$gs.gameStory('score', 'black defense', 'D'); // label could initials
 					});
 					$('#scoreBlackO').on('click', function() { 
-						$gs.gameStory('score', 'black offense', 'TC'); // could be 'O'
+						$gs.gameStory('score', 'black offense', 'O'); // label could initials
 					});
 
 					$('#stop').on('click', function() { 
@@ -107,13 +115,17 @@
 
 
 <h2>How to use</h2>
-<h3>Add a div</h3>
+Probably easiest to just <strong>view source</strong> of this page... But if you want, you can try to follow these awesome instructions :)
+<h3>Add your js references and add a div</h3>
 Name it whatever you want.
 <pre>
 &lt;div class="game-story-container">&lt;/div>
+
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">&lt;/script>
+&lt;script src="js/jquery.foos.story.js">&lt;/script>
 </pre>
 
-<h3>Add some js code (probably on load)</h3>
+<h3>Add some js code (probably onready)</h3>
 <pre>
 var $gs = $('.game-story-container');
 
@@ -178,6 +190,7 @@ $(function() {
 </pre>
 
 <h3>CSS Classes:</h3>
+Overrride them as much as you want
 <pre>
 .game-story-container {
 	width: 100%;
@@ -214,5 +227,7 @@ $(function() {
 	background: black;
 }
 </pre>
+
+<a href="https://markschmidt42.github.io/jquery.foos.story/">https://markschmidt42.github.io/jquery.foos.story/</a>
 	</body>
 </html>
