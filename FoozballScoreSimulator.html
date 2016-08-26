@@ -1,0 +1,218 @@
+<html>
+	<head>
+		<style>
+			.game-story-container {
+				width: 100%;
+				background-color:#eee;
+				height:40px;
+				position: relative;
+			}
+
+			.game-story-container .game-story-timer {
+				background-color:#ddd;
+				height:100%;
+			}
+
+			.game-story-container .game-story-score {
+				position: absolute;
+				height: 100%;
+				width: 10px;
+				background: red;
+				float: left;
+			}
+
+			.game-story-container .game-story-score label {
+
+				position: relative;
+				top: -20px;
+				font-family: "Comic Sans MS", cursive, sans-serif; /* Yeah, I just did that.... Best Font EVER */
+				font-weight: 700;
+			}
+
+			.game-story-container .game-story-score.yellow {
+				background: #ddce24;
+				color: #ddce24;
+			}
+			.game-story-container .game-story-score.black {
+				background: black;
+			}
+
+
+			pre {
+				padding: 10px 14px;
+				background-color: #333;
+				color: lime;
+			}
+		</style>
+	</head>
+	<body>
+			<h1>This is a test, this is only a test</h1>
+
+			<button id="start">START GAME</button>
+
+			<button id="scoreYellowD">Score Yellow D</button>
+			<button id="scoreYellowO">Score Yellow O</button>
+			<button id="scoreBlackD">Score Black D</button>
+			<button id="scoreBlackO">Score Black O</button>
+
+			<button id="stop">STOP GAME</button>
+
+
+			<br/><br/><br/><br/><br/><br/>
+
+			<div class="game-story-container"></div>
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<script src="js/jquery.foos.story.js"></script>
+			<script language="javascript">
+
+				$(function() { 
+
+					var $gs = $('.game-story-container');
+
+					$gs.gameStory(); // uses default settings (5 minute default game, ...)
+					
+					// override defaults (great for testing)
+					//$gs.gameStory({
+					//	gameTimeSeconds: (1 * 60) /// just the "default" game time, it will be smart
+					//	,startingTime: 44 /// testing
+					//	,autoExtendTimerBy: .50
+					//	,debug: true
+					//}); // calls the init method
+
+					$('#start').on('click', function() { 
+						$gs.gameStory('start');
+					});
+					
+
+					$('#scoreYellowD').on('click', function() { 
+						$gs.gameStory('score', 'yellow defense', 'MS'); // label could be 'D'
+					});
+					$('#scoreYellowO').on('click', function() { 
+						$gs.gameStory('score', 'yellow offense', 'CH'); // could be 'O'
+					});
+					$('#scoreBlackD').on('click', function() { 
+						$gs.gameStory('score', 'black defense', 'IT'); // could be 'D'
+					});
+					$('#scoreBlackO').on('click', function() { 
+						$gs.gameStory('score', 'black offense', 'TC'); // could be 'O'
+					});
+
+					$('#stop').on('click', function() { 
+						$gs.gameStory('stop');
+					});
+
+				});
+			</script>
+
+
+<h2>How to use</h2>
+<h3>Add a div</h3>
+Name it whatever you want.
+<pre>
+&lt;div class="game-story-container">&lt;/div>
+</pre>
+
+<h3>Add some js code (probably on load)</h3>
+<pre>
+var $gs = $('.game-story-container');
+
+$gs.gameStory(); // initializes the gamestory div
+</pre>
+
+Advanced settings:
+<pre>
+// override defaults (great for testing)
+$gs.gameStory({
+	 gameTimeSeconds: (1 * 60) /// just the "default" game time, it will be smart
+	,startingTime: 45 /// testing, just starts the game of at 45 seconds
+	,autoExtendTimerBy: .50
+	,debug: true
+});
+</pre>
+
+
+
+<h3>Add some js to your actions, there are 3 methods to use</h3>
+<pre>
+$gs.gameStory('start');
+
+$gs.gameStory('score', 'yellow defense', 'score label');
+
+$gs.gameStory('stop');
+</pre>
+
+<h3>This example:</h3>
+<pre>
+$(function() { 
+
+	var $gs = $('.game-story-container');
+
+	$gs.gameStory(); // uses default settings (5 minute default game, ...)
+	
+	$('#start').on('click', function() { 
+		$gs.gameStory('start');
+	});
+	
+	$('#scoreYellowD').on('click', function() { 
+		$gs.gameStory('score', 'yellow defense', 'MS'); // label could be 'D'
+	});
+
+	$('#scoreYellowO').on('click', function() { 
+		$gs.gameStory('score', 'yellow offense', 'CH'); // could be 'O'
+	});
+
+	$('#scoreBlackD').on('click', function() { 
+		$gs.gameStory('score', 'black defense', 'IT'); // could be 'D'
+	});
+
+	$('#scoreBlackO').on('click', function() { 
+		$gs.gameStory('score', 'black offense', 'TC'); // could be 'O'
+	});
+
+	$('#stop').on('click', function() { 
+		$gs.gameStory('stop');
+	});
+
+});
+</pre>
+
+<h3>CSS Classes:</h3>
+<pre>
+.game-story-container {
+	width: 100%;
+	background-color:#eee;
+	height:40px;
+	position: relative;
+}
+
+.game-story-container .game-story-timer {
+	background-color:#ddd;
+	height:100%;
+}
+
+.game-story-container .game-story-score {
+	position: absolute;
+	height: 100%;
+	width: 10px;
+	background: red;
+	float: left;
+}
+
+.game-story-container .game-story-score label {
+	position: relative;
+	top: -20px;
+	font-family: "Comic Sans MS", cursive, sans-serif; /* Yeah, I just did that.... Best Font EVER */
+	font-weight: 700;
+}
+
+.game-story-container .game-story-score.yellow {
+	background: #ddce24;
+	color: #ddce24;
+}
+.game-story-container .game-story-score.black {
+	background: black;
+}
+</pre>
+	</body>
+</html>
