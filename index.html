@@ -84,7 +84,7 @@
 					
 					// override defaults (great for testing)
 					$gs.gameStory({
-						gameTimeSeconds: (1 * 60) /// just the "default" game time, it will be smart
+						gameTimeSeconds: (1 * 60) /// just the "default" game time, it will be smart and extend as needed
 					//	,startingTime: 44 /// testing
 					//	,autoExtendTimerBy: .50
 					//	,debug: true
@@ -162,8 +162,14 @@ $(function() {
 
 	var $gs = $('.game-story-container');
 
-	$gs.gameStory(); // uses default settings (5 minute default game, ...)
+	// not doing default settings for this test
+	//$gs.gameStory(); // uses default settings (5 minute default game, ...)
+
+	$gs.gameStory({
+		gameTimeSeconds: (1 * 60) // just the "default" game time, it will be smart and extend as needed
+	});
 	
+
 	$('#start').on('click', function() { 
 		$gs.gameStory('start');
 	});
